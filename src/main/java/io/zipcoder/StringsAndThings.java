@@ -1,6 +1,8 @@
 package io.zipcoder;
 
 
+import java.util.concurrent.CountedCompleter;
+
 /**
  * @author tariq
  */
@@ -14,8 +16,24 @@ public class StringsAndThings {
      *           countYZ("day fez"); // Should return 2
      *           countYZ("day fyyyz"); // Should return 2
      */
-    public Integer countYZ(String input){
-        return null;
+    public Integer countYZ(String input)
+
+    {
+
+        int Count = 0;
+        String test = input;
+        String [] arrayofwords = test.split(" ");
+        for(int i=0; i < arrayofwords.length; i++)
+        {
+            String plswork = "";
+            plswork = arrayofwords[i].toString();
+            if(plswork.charAt(plswork.length()-1) == 'y' || plswork.charAt(plswork.length()-1) == 'z' )
+            {
+                Count++;
+            }
+
+        }
+        return Count;
     }
 
     /**
@@ -27,8 +45,12 @@ public class StringsAndThings {
      *           removeString("Hello there", "e") //  Should return "Hllo thr"
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
-    public String removeString(String base, String remove){
-        return null;
+    public String removeString(String base, String remove)
+
+    {
+        String pass = base;
+        pass = pass.replace(remove,"");
+        return pass;
     }
 
     /**
@@ -39,9 +61,45 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("This is notnot") // Should return true
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
-    public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+    public Boolean containsEqualNumberOfIsAndNot(String input)
+    {
+        int countofIS=0;
+        int countofNOT=0;
+        String f = input;
+        for(int i=0; i<f.length()-1;i++)
+        {
+            if(f.charAt(i)=='i')
+            {
+                if(f.charAt(i+1)=='s')
+                {
+                    countofIS++;
+                }
+            }
+        }
+        for(int i=0; i<f.length()-2;i++)
+        {
+            if(f.charAt(i)=='n')
+            {
+                if(f.charAt(i+1)=='o')
+                {
+                    if(f.charAt(i+2)=='t')
+                    {
+                        countofNOT++;
+                    }
+                }
+            }
+        }
+        if(countofNOT==countofIS)
+        {
+            return true;
+        }
+        else return false;
     }
+
+
+
+
+
 
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
@@ -51,8 +109,54 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
-    }
+
+        boolean happy = true;
+
+
+        if(input.charAt(input.length()-1) =='g')
+        {
+            if (input.charAt(input.length()-2)!='g')
+            {
+                happy = false;
+                return happy;
+            }
+        }
+
+
+        for(int i=1; i<input.length()-1;i++)
+        {
+           if(input.charAt(i)=='g')
+           {
+               if (input.charAt(i - 1) == 'g')
+               {
+                   happy = true;
+               }
+               else if (input.charAt(i + 1) == 'g')
+               {
+                   happy = true;
+               }
+               else
+               {
+                   happy = false;
+                   return happy;
+               }
+
+           }
+
+        }
+        return happy;
+
+        //for(int i=0; i<input.length();i++)
+        //{
+          //  if (i==input.length()-1)
+           // {
+             //   if
+
+        }
+
+
+
+
 
 
     /**
@@ -62,7 +166,20 @@ public class StringsAndThings {
      *            countTriple("xxxabyyyycd") // Should return 3
      *            countTriple("a") // Should return 0
      */
-    public Integer countTriple(String input){
-        return null;
+    public Integer countTriple(String input)
+    {
+        int count = 0;
+        for(int i = 0; i<input.length()-2;i++)
+        {
+            char letter = input.charAt(i);
+            if(input.charAt(i+1) == letter)
+            {
+                if(input.charAt(i + 2) == letter)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }
